@@ -15,6 +15,11 @@
     <button>
       <Icon icon="fa-solid:forward"></Icon>
     </button>
+    <div>Slow down</div>
+    <div>Auto-play</div>
+    <div>Clear game</div>
+    <div>Next tick</div>
+    <div>Speed up</div>
   </div>
 </template>
 
@@ -27,7 +32,9 @@ const store = useGameStore();
 
 <style scoped>
 .wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
 }
 
 .wrapper > button {

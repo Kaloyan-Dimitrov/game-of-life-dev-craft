@@ -8,6 +8,7 @@ const store = useGameStore();
 
 <template>
   <div>
+    <!-- <StatsComponent></StatsComponent> -->
     <GameComponent :width="store.width" :height="store.height"></GameComponent>
     <GridSizeEditor></GridSizeEditor>
     <ControlsComponent></ControlsComponent>
