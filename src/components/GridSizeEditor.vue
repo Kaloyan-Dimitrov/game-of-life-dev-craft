@@ -8,13 +8,8 @@
 
 <script setup lang="ts">
 import { useGameStore } from "@/stores/game";
-import type { Ref } from "vue";
-import { ref } from "vue";
 
 const store = useGameStore();
-
-const width: Ref<number> = ref(store.width);
-const height: Ref<number> = ref(store.width);
 </script>
 
 <style scoped>
@@ -25,7 +20,7 @@ const height: Ref<number> = ref(store.width);
   color: var(--green-color);
   border-radius: 0.9em;
   padding: 0 1em 0 1em;
-  margin: 1em;
+  margin: 0.5em;
   border-style: solid;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
