@@ -35,6 +35,7 @@ export const useGameStore = defineStore("game", () => {
 
   const clearGame = () => {
     numTicks.value = 0;
+    if (autoplay.value) stopAutoplay();
     initializeGame();
   };
 
