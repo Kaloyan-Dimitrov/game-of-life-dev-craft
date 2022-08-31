@@ -50,7 +50,12 @@ export const useGameStore = defineStore("game", () => {
         body: JSON.stringify(game.value),
       });
       const result: boolean[][] = await res.json();
-      console.log(result == game.value);
+
+      if (
+        JSON.stringify(result) == JSON.stringify(game.value) &&
+        autoplay.value
+      )
+        stopAutoplay();
       game.value = result;
       numTicks.value++;
     } catch (err) {
