@@ -14,20 +14,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Ref } from "vue";
 import Cell from "./CellComponent.vue";
-import { useGameStore } from "@/stores/game";
 defineProps<{
   width: number;
   height: number;
 }>();
-
-const store = useGameStore();
 </script>
 
 <style scoped>
 .game-grid {
+  max-height: 100vh;
   display: flex;
   border-style: solid;
   border-color: var(--green-color-light);
@@ -37,6 +33,7 @@ const store = useGameStore();
 
 .game-row {
   display: flex;
+  flex-direction: row;
   height: 100%;
   width: 100%;
 }

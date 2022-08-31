@@ -32,7 +32,7 @@ const changeState = (e: MouseEvent, force?: boolean) => {
 <style scoped scss>
 .cell {
   aspect-ratio: 1;
-  flex: 1;
+  flex: 1 1 1em;
   border-style: solid;
   border-color: var(--green-color-light);
   border-width: 0 0.25px 0.25px 0;
