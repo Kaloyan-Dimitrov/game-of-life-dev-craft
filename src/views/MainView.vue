@@ -6,5 +6,5 @@ const store = useGameStore();
 
 <template>
   <GameComponent :width="store.width" :height="store.height"></GameComponent>
-  <GridSizeEditor></GridSizeEditor>
+  <!-- <GridSizeEditor></GridSizeEditor> -->
 </template>

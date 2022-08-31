@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed, ref, type ComputedRef, type Ref } from "vue";
+import { computed, ref, type Ref } from "vue";
 
 interface IState {
   game: Ref<boolean[][]>;
@@ -8,8 +8,8 @@ interface IState {
 }
 
 export const useGameStore = defineStore("game", () => {
-  const width: IState["width"] = ref(100);
-  const height: IState["height"] = ref(100);
+  const width: IState["width"] = ref(20);
+  const height: IState["height"] = ref(20);
   const game: IState["game"] = ref(
     new Array(height.value)
       .fill(false)
@@ -22,15 +22,17 @@ export const useGameStore = defineStore("game", () => {
       .map(() => new Array(width.value).fill(false));
   }
 
-  initializeGame();
-
   function resize(w: number, h: number): void {
     width.value = w;
     height.value = h;
     initializeGame();
   }
 
-  const cellAt = computed((x: number, y: number) => game.value[x][y]);
+  function changeCell(x: number, y: number): void {
+    game.value[y][x] = !game.value[y][x];
+  }
 
-  return { width, height, game, initializeGame, resize, cellAt };
+  const cellAt = computed(() => (x: number, y: number) => game.value[y][x]);
+
+  return { width, height, game, initializeGame, resize, changeCell, cellAt };
 });

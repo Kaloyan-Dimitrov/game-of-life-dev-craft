@@ -5,11 +5,9 @@
         v-for="column in width"
         :key="column"
         :location="{
-          x: column,
-          y: row,
+          x: column - 1,
+          y: row - 1,
         }"
-        :editing="editing"
-        :alive="Math.random() > 0.5 ? false : true"
       ></Cell>
     </div>
   </div>
@@ -19,12 +17,13 @@
 import { ref } from "vue";
 import type { Ref } from "vue";
 import Cell from "./CellComponent.vue";
+import { useGameStore } from "@/stores/game";
 defineProps<{
   width: number;
   height: number;
 }>();
 
-const editing: Ref<boolean> = ref(true);
+const store = useGameStore();
 </script>
 
 <style scoped>
@@ -33,9 +32,12 @@ const editing: Ref<boolean> = ref(true);
   border-style: solid;
   border-color: var(--green-color-light);
   border-width: 0.25px 0 0 0.25px;
+  flex-direction: column;
 }
 
 .game-row {
-  flex-direction: row;
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 </style>
