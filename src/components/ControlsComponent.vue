@@ -6,7 +6,7 @@
     <button>
       <Icon icon="fa6-solid:play"></Icon>
     </button>
-    <button>
+    <button @click="store.clearGame()">
       <Icon icon="fa6-solid:trash"></Icon>
     </button>
     <button>
@@ -20,6 +20,9 @@
 
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
+import { useGameStore } from "@/stores/game";
+
+const store = useGameStore();
 </script>
 
 <style scoped>
