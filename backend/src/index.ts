@@ -11,8 +11,7 @@ app.use(cors({
 }));
 
 app.post('/tick', (req: Request, res: Response) => {
-	console.log(req.body);
-	res.sendStatus(200).json(preformTick(req.body));
+	res.json(preformTick(req.body));
 });
 
 

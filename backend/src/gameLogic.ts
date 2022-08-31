@@ -12,15 +12,15 @@ const countNeighbors = (grid: boolean[][], x: number, y: number): number => {
 };
 
 const preformTick = (grid: boolean[][]): boolean[][] => {
-	grid.map((row, y) => {
+	return grid.map((row, y) => {
 		return row.map((cell, x) => {
 			const numNeighbors = countNeighbors(grid, x, y);
 			if(cell && numNeighbors == 2 || numNeighbors == 3) return true;
 			if(!cell && numNeighbors == 3) return true;
 			if(cell) return false;
+			return cell;
 		});
 	});
-	return grid;
 };
 
 export default preformTick;

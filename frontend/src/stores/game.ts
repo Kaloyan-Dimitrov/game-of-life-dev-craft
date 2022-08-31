@@ -9,8 +9,8 @@ interface IState {
 
 export const useGameStore = defineStore("game", () => {
   // State
-  const width: IState["width"] = ref(5);
-  const height: IState["height"] = ref(5);
+  const width: IState["width"] = ref(30);
+  const height: IState["height"] = ref(30);
   const game: IState["game"] = ref(
     new Array(height.value)
       .fill(false)
@@ -42,6 +42,8 @@ export const useGameStore = defineStore("game", () => {
         },
         body: JSON.stringify(game.value),
       });
+      const result: boolean[][] = await res.json();
+      game.value = result;
     } catch (err) {
       console.error(err);
     }
