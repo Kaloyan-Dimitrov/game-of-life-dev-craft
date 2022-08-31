@@ -9,7 +9,7 @@
     <button @click="store.clearGame()">
       <Icon icon="fa6-solid:trash"></Icon>
     </button>
-    <button>
+    <button @click="store.tick()">
       <Icon icon="fa6-solid:forward-step"></Icon>
     </button>
     <button>

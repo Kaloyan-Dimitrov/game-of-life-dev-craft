@@ -32,6 +32,21 @@ export const useGameStore = defineStore("game", () => {
     initializeGame();
   };
 
+  const tick = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/tick", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(game.value),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Getters
   const cellAt = computed(() => (x: number, y: number) => game.value[y][x]);
 
@@ -39,5 +54,5 @@ export const useGameStore = defineStore("game", () => {
   watch(width, initializeGame);
   watch(height, initializeGame);
 
-  return { width, height, game, changeCell, clearGame, cellAt };
+  return { width, height, game, changeCell, clearGame, tick, cellAt };
 });
