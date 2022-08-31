@@ -1,5 +1,5 @@
 <template>
-  <div class="game-grid">
+  <div class="game-grid" :style="`aspect-ratio: ${width / height};`">
     <div class="game-row" v-for="row in height" :key="row">
       <Cell
         v-for="column in width"
@@ -23,18 +23,20 @@ defineProps<{
 
 <style scoped>
 .game-grid {
-  max-height: 100vh;
+  align-self: center;
+  margin: 0.5em;
   display: flex;
-  border-style: solid;
-  border-color: var(--green-color-light);
-  border-width: 0.25px 0 0 0.25px;
   flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  justify-content: center;
 }
 
 .game-row {
+  min-width: 0;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  width: 100%;
+  min-height: 0;
 }
 </style>

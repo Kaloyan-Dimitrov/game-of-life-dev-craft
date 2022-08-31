@@ -51,11 +51,11 @@ export const useGameStore = defineStore("game", () => {
       });
       const result: boolean[][] = await res.json();
 
-      if (
-        JSON.stringify(result) == JSON.stringify(game.value) &&
-        autoplay.value
-      )
-        stopAutoplay();
+      // if (
+      //   JSON.stringify(result) == JSON.stringify(game.value) &&
+      //   autoplay.value
+      // )
+      //   stopAutoplay();
       game.value = result;
       numTicks.value++;
     } catch (err) {

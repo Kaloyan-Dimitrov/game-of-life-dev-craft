@@ -31,11 +31,13 @@ const changeState = (e: MouseEvent, force?: boolean) => {
 
 <style scoped scss>
 .cell {
+  min-width: 0;
+  min-height: 0;
   aspect-ratio: 1;
   flex: 1 1 1em;
   border-style: solid;
   border-color: var(--green-color-light);
-  border-width: 0 0.25px 0.25px 0;
+  border-width: 0.25px;
 }
 
 .alive {
