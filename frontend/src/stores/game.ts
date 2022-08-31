@@ -16,6 +16,10 @@ export const useGameStore = defineStore("game", () => {
       .fill(false)
       .map(() => new Array(width.value).fill(false))
   );
+  const numTicks = ref(0);
+  const FPS = ref(2);
+  const autoplay = ref(false);
+  let autoplayInterval: NodeJS.Timer | null = null;
 
   // Actions
   const initializeGame = () => {
@@ -25,10 +29,12 @@ export const useGameStore = defineStore("game", () => {
   };
 
   const changeCell: (x: number, y: number) => void = (x, y) => {
+    // if (autoplay.value) return;
     game.value[y][x] = !game.value[y][x];
   };
 
   const clearGame = () => {
+    numTicks.value = 0;
     initializeGame();
   };
 
@@ -43,18 +49,60 @@ export const useGameStore = defineStore("game", () => {
         body: JSON.stringify(game.value),
       });
       const result: boolean[][] = await res.json();
+      console.log(result == game.value);
       game.value = result;
+      numTicks.value++;
     } catch (err) {
       console.error(err);
     }
   };
 
+  const changeFPS = (change: number): void => {
+    if (FPS.value + change <= 0 || FPS.value + change > 30) return;
+    FPS.value += change;
+    if (autoplay.value) {
+      stopAutoplay();
+      startAutoplay();
+    }
+  };
+
+  const startAutoplay = (): void => {
+    autoplay.value = true;
+    autoplayInterval = setInterval(tick, 1000 / FPS.value);
+  };
+
+  const stopAutoplay = (): void => {
+    autoplay.value = false;
+    if (autoplayInterval !== null) clearInterval(autoplayInterval);
+  };
+
   // Getters
   const cellAt = computed(() => (x: number, y: number) => game.value[y][x]);
+  const aliveCellsNum = computed(() =>
+    game.value.flat().reduce((sum, val) => (sum += Number(val)), 0)
+  );
 
   // Watchers
   watch(width, initializeGame);
   watch(height, initializeGame);
 
-  return { width, height, game, changeCell, clearGame, tick, cellAt };
+  return {
+    // State
+    width,
+    height,
+    game,
+    numTicks,
+    FPS,
+    autoplay,
+    // Actions
+    changeCell,
+    clearGame,
+    tick,
+    changeFPS,
+    startAutoplay,
+    stopAutoplay,
+    // Getters
+    cellAt,
+    aliveCellsNum,
+  };
 });
