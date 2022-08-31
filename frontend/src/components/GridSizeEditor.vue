@@ -1,8 +1,20 @@
 <template>
   <div class="wrapper">
-    <input class="dim-input" v-model.lazy.number="store.width" />
+    <input
+      type="number"
+      min="1"
+      max="80"
+      class="dim-input"
+      v-model.lazy.number="store.width"
+    />
     <div class="X">X</div>
-    <input class="dim-input" v-model.lazy.number="store.height" />
+    <input
+      type="number"
+      min="1"
+      max="80"
+      class="dim-input"
+      v-model.lazy.number="store.height"
+    />
   </div>
 </template>
 
