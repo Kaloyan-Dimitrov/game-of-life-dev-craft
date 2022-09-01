@@ -4,8 +4,12 @@ The `frontend` application is created using vite and vue.js with typescript. It 
 
 # Running the backend
 
+<<<<<<< HEAD
 ```
 cd backend
+=======
+```cd backend
+>>>>>>> 22ed5f698e18097b4dad31d906c280e113463fb1
 npm install
 npm start
 ```
