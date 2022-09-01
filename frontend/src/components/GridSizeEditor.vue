@@ -2,26 +2,43 @@
   <div class="wrapper">
     <input
       type="number"
-      min="1"
+      min="2"
       max="80"
       class="dim-input"
-      v-model.lazy.number="store.width"
+      @change="validate"
+      v-model.lazy.number="wInput"
     />
     <div class="X">X</div>
     <input
       type="number"
-      min="1"
+      min="2"
       max="80"
       class="dim-input"
-      v-model.lazy.number="store.height"
+      @change="validate"
+      v-model.lazy.number="hInput"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useGameStore } from "@/stores/game";
-
+import { ref } from "vue";
 const store = useGameStore();
+
+const wInput = ref(store.width);
+const hInput = ref(store.height);
+
+function validate() {
+  if (isNaN(Number(wInput.value))) wInput.value = store.width;
+  else if (Number(wInput.value) < 2 || Number(wInput.value) >= 80)
+    wInput.value = store.width;
+  if (isNaN(Number(hInput.value))) hInput.value = store.width;
+  else if (Number(hInput.value) < 2 || Number(hInput.value) >= 80)
+    hInput.value = store.width;
+
+  store.width = wInput.value;
+  store.height = hInput.value;
+}
 </script>
 
 <style scoped>
